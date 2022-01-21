@@ -91,10 +91,10 @@ router.delete('/:id', async (req, res) => {
 		const deleteProduct = await Product.destroy({
 			where: { id: req.params.id },
 		});
-    if (!productData){
-      res.status(404).json({ message: 'Nothing was found with this ID.' });
-      return;
-    }
+		if (!productData) {
+			res.status(404).json({ message: 'Nothing was found with this ID.' });
+			return;
+		}
 		res.status(200).json(deleteProduct);
 	} catch (err) {
 		res.status(500).json(err);
