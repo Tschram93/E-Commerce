@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Model } = require('sequelize');
 const { Product, Category, Tag, ProductTag } = require('../../models');
-
+  // wrong route response (200)
 router.get('/', async (req, res) => {
 	try {
 		const productData = await Product.findAll({
