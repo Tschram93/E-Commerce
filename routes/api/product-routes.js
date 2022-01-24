@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Model } = require('sequelize');
 const { Product, Category, Tag, ProductTag } = require('../../models');
-  // wrong route response (200)
+// wrong route response (200)
 router.get('/', async (req, res) => {
 	try {
 		const productData = await Product.findAll({
@@ -88,15 +88,20 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
+	// delete one product by its `id` value
 	try {
-		const deleteProduct = await Product.destroy({
-			where: { id: req.params.id },
+		const productData = await Product.destroy({
+			where: {
+				id: req.params.id,
+			},
 		});
+
 		if (!productData) {
-			res.status(404).json({ message: 'Nothing was found with this ID.' });
+			res.status(404).json({ message: 'no product found with this id!' });
 			return;
 		}
-		res.status(200).json(deleteProduct);
+
+		res.status(200).json(productData);
 	} catch (err) {
 		res.status(500).json(err);
 	}
